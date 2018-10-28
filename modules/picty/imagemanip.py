@@ -660,9 +660,9 @@ def load_image(item,collection,interrupt_fn,draft_mode=False,apply_transforms=Tr
                 width,height = image_pb.get_width(),image_pb.get_height()
                 if image_pb.get_n_channels() >=3:
                     if image_pb.get_has_alpha():
-                        image=Image.fromstring("RGBA",(width,height),image_pb.get_pixels() )
+                        image=Image.frombytes("RGBA",(width,height),image_pb.get_pixels() )
                     else:
-                        image=Image.fromstring("RGB",(width,height),image_pb.get_pixels() )
+                        image=Image.frombytes("RGB",(width,height),image_pb.get_pixels() )
                 else:
                     print "GDK Parser - Can't handle image with less than 3 channel"
                     raise TypeError
@@ -754,7 +754,7 @@ def pixbuf_to_image(pb):
     ch = pb.get_n_channels()
 
     width,height = pb.get_width(),pb.get_height()
-    image = Image.fromstring("RGB",(width,height),pb.get_pixels() )
+    image = Image.frombytes("RGB",(width,height),pb.get_pixels() )
 
     return image
 
