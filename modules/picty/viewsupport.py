@@ -379,6 +379,11 @@ class DateCompare:
 def contains_tag(l,r,item):
     try:
         text=r.strip()
+        if text ='' and 'Keywords' not in item.meta:
+            item.relevance+=3
+        if text == '' and item.meta['Keywords'] == None:
+            item.relevance+=3
+            return True
         if text in item.meta['Keywords']:
             item.relevance+=3
             return True
